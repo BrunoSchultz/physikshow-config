@@ -1,0 +1,49 @@
+\section{Load-In, Logistics \& Setup}
+
+<% if config.anreise is defined %>
+    <# Set Variables #>
+    <% set ankunft = config.anreise.ankunftszeit | default('TBD') %>
+    <% set crew = config.anreise.crew_groesse | default('our') %>
+    <% set mat_vans = config.anreise.fahrzeuge.material_transporter | default(0) %>
+    <% set pers_vans = config.anreise.fahrzeuge.personen_transporter | default(0) %>
+    <% set total_vans = mat_vans + pers_vans %>
+    <% set sonstiges_text = config.anreise.sonstiges | default('') %>
+<% endif %>
+
+Our crew (<< crew >> personnel) is scheduled to arrive at the venue on \textbf{<< config.anreise.anreisetag >>} at approximately \textbf{<< ankunft >>} to begin load-in and setup.
+
+\subsection*{Load-In \& Parking}
+Because we travel with heavy equipment and road cases, we require the shortest possible, barrier-free access route (ramp or elevator) from the loading dock directly to the stage.
+
+<% if total_vans > 0 %>
+We will arrive with a total of \textbf{<< total_vans >> vehicles} 
+<% if config.anreise is defined and config.anreise.fahrzeuge is defined %>
+    (<% if mat_vans > 0 %><< mat_vans >> Box Trucks / Cargo Vans<% endif %><% if mat_vans > 0 and pers_vans > 0 %> and <% endif %><% if pers_vans > 0 %><< pers_vans >> Passenger Vehicles<% endif %>).
+<% endif %>
+<% endif %>
+
+\begin{FrageBox}{Navigation \& Logistics}
+    \textbf{Loading Dock Access:}\\
+    \textit{Since the loading dock is often separate from the main entrance: What is the exact address or access point for our load-in vehicles?}\\[0.2cm]
+    \TextField[name=NaviAdresse, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+    
+    \vspace{0.4cm}
+    \textbf{Path of Travel for Load-In/Out:}\\[0.1cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        <% if total_vans > 0 %>
+        \CheckBox[name=ParkenFrei]{} & Parking spots for our << total_vans >> vehicles will be reserved directly at the venue.\\
+        <% endif %>
+        \CheckBox[name=RampeFrei]{} & The path from the loading dock to the stage is at ground level or accessible via freight elevator (no stairs), suitable for rolling road cases.\\
+    \end{tabularx}
+
+    \vspace{0.4cm}
+    If venue parking cannot be reserved, can you recommend nearby parking facilities?\\[0.2cm]
+    \TextField[name=Parken, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+\end{FrageBox}
+
+<% if sonstiges_text | length > 0 %>
+\vspace{0.3cm}
+\textbf{Additional Logistics Notes from our side:}\\
+<< sonstiges_text >>
+\vspace{0.8cm}
+<% endif %>

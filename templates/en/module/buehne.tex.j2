@@ -1,0 +1,62 @@
+\section{Stage \& Green Room}
+To properly adapt our show to your venue and ensure the safety of our practical effects, we require preliminary information regarding the physical space.
+
+\subsection*{Stage Dimensions \& Plot}
+
+\begin{FrageBox}{Stage Performance Area}
+    Please provide the exact dimensions of the usable performance space (clearance):\\[0.2cm]
+    
+    \begin{tabularx}{\textwidth}{@{}l X l X@{}}
+        \textbf{Width (m):} & \TextField[name=BuehneBreite, width=2.5cm, height=0.5cm, bordercolor=formborder]{} & \textbf{Depth (m):} & \TextField[name=BuehneTiefe, width=2.5cm, height=0.5cm, bordercolor=formborder]{} \\[0.4cm]
+        \textbf{Vertical Clearance (m):} & \TextField[name=BuehneLichteHoehe, width=2.5cm, height=0.5cm, bordercolor=formborder]{} & & \\
+    \end{tabularx}
+    \vspace{0.6cm}\\
+    To give us a better understanding of the space, please send us a current photo of the empty stage/deck.
+\end{FrageBox}
+
+\subsection*{Green Room / Backstage}
+Our production requires a Green Room or prep area that is off-limits to the public and out of sight lines.
+
+\begin{FrageBox}{Green Room \& Prep}
+    Is a suitable room available near the stage?\\[0.1cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=BackstageJa]{} & \textbf{Yes}, a dedicated Green Room/Backstage area is available.\\
+    \end{tabularx}
+    
+    \vspace{0.4cm}
+    Additional notes regarding the backstage area (e.g., distance to stage):\\
+    \TextField[name=BackstageNotizen, multiline=true, width=\linewidth, height=1.2cm, bordercolor=formborder]{}
+\end{FrageBox}
+
+
+<# --- Backline (Tables, Chairs, etc.) (Only visible if defined in YAML) --- #>
+<% if config.buehne.aktiv %>
+\subsection*{Backline \& Props}
+    For the performance, we require the following backline/furniture from the venue:
+    <% set anzahl_tische = config.buehne.tische | default(0) %>
+    <% set anzahl_stuehle = config.buehne.stuehle | default(0) %>
+    <% set sonstiges_text = config.buehne.sonstiges | default('') %>
+
+    <% if anzahl_tische > 0 or anzahl_stuehle > 0 %>
+        \begin{FrageBox}{Venue Furniture}
+            \textbf{Required Items:} \\[0.2cm]
+            <% if anzahl_tische > 0 %>
+                $\bullet$ We require \textbf{<< anzahl_tische >> heavy-duty tables} for our experiment setups.\\[0.2cm]
+            <% endif %>
+            
+            <% if anzahl_stuehle > 0 %>
+                $\bullet$ Additionally, we need \textbf{<< anzahl_stuehle >> chairs} directly in the stage area.\\[0.4cm]
+            <% endif %>
+        \begin{tabularx}{\textwidth}{@{}l X@{}}
+            \CheckBox[name=BuehneMoebelOk, width=1em, height=1em, bordercolor=formborder]{} & \textbf{Yes}, the requested furniture will be provided.\\
+        \end{tabularx}
+        \end{FrageBox}
+        \vspace{0.5cm}
+    <% endif %>
+
+    <% if sonstiges_text | length > 0 %>
+        \textbf{Additional Stage Requirements:} \\
+        << sonstiges_text >>
+        \vspace{0.8cm}
+    <% endif %>
+<% endif %>

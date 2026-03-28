@@ -1,0 +1,62 @@
+\section{Bühne und Backstage}
+Um unsere Show optimal auf Ihre Location abzustimmen und einen sicheren Ablauf unserer Experimente zu gewährleisten, benötigen wir einige Vorabinformationen zu den räumlichen Gegebenheiten. 
+
+\subsection*{Bühnenmaße \& Raumskizze}
+
+\begin{FrageBox}{Bühnenfläche}
+    Bitte tragen Sie die ungefähren für die Show nutzbaren Maße des Hörsaals ein:\\[0.2cm]
+    
+    \begin{tabularx}{\textwidth}{@{}l X l X@{}}
+        \textbf{Breite (m):} & \TextField[name=BuehneBreite, width=2.5cm, height=0.5cm, bordercolor=formborder]{} & \textbf{Tiefe (m):} & \TextField[name=BuehneTiefe, width=2.5cm, height=0.5cm, bordercolor=formborder]{} \\[0.4cm]
+        \textbf{Lichte Höhe (m):} & \TextField[name=BuehneLichteHoehe, width=2.5cm, height=0.5cm, bordercolor=formborder]{} & & \\
+    \end{tabularx}
+    \vspace{0.6cm}\\
+    Um uns ein besseres Bild machen zu können, können Sie uns gerne ein aktuelles der leeren Bühne zuschicken.
+\end{FrageBox}
+
+\subsection*{Backstage-Bereich}
+Für die Show benötigen wir einen Backstage-Bereich, der idealerweise für das Publikum unzugänglich und nicht einsehbar ist.
+
+\begin{FrageBox}{Backstage \& Vorbereitung}
+    Steht ein entsprechender Raum in Bühnennähe zur Verfügung?\\[0.1cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=BackstageJa]{} & \textbf{Ja}, ein separater Backstage-Raum ist vorhanden.\\
+    \end{tabularx}
+    
+    \vspace{0.4cm}
+    Weitere Anmerkungen zum Backstage-Bereich (z.B. Entfernung zur Bühne):\\
+    \TextField[name=BackstageNotizen, multiline=true, width=\linewidth, height=1.2cm, bordercolor=formborder]{}
+\end{FrageBox}
+
+
+<# --- Zusätzliches (Tische, Stühle, etc.) (Nur sichtbar, wenn in YAML definiert) --- #>
+<% if config.buehne.aktiv %>
+\subsection*{Sonstiges}
+    Für die Show benötigen wir auch folgende Requisiten oder Mobiliar
+    <% set anzahl_tische = config.buehne.tische | default(0) %>
+    <% set anzahl_stuehle = config.buehne.stuehle | default(0) %>
+    <% set sonstiges_text = config.buehne.sonstiges | default('') %>
+
+    <% if anzahl_tische > 0 or anzahl_stuehle > 0 %>
+        \begin{FrageBox}{Requisiten}
+            \textbf{Benötigtes Mobiliar:} \\[0.2cm]
+            <% if anzahl_tische > 0 %>
+                $\bullet$ Wir benötigen \textbf{<< anzahl_tische >> stabile Tische} für unseren Experimentieraufbau.\\[0.2cm]
+            <% endif %>
+            
+            <% if anzahl_stuehle > 0 %>
+                $\bullet$ Zudem benötigen wir \textbf{<< anzahl_stuehle >> Stühle} im direkten Bühnenbereich.\\[0.4cm]
+            <% endif %>
+        \begin{tabularx}{\textwidth}{@{}l X@{}}
+            \CheckBox[name=BuehneMoebelOk, width=1em, height=1em, bordercolor=formborder]{} & \textbf{Ja}, Mobiliar wird gestellt\\
+        \end{tabularx}
+        \end{FrageBox}
+        \vspace{0.5cm}
+    <% endif %>
+
+    <% if sonstiges_text | length > 0 %>
+        \textbf{Zusätzliche Bühnenanforderungen:} \\
+        << sonstiges_text >>
+        \vspace{0.8cm}
+    <% endif %>
+<% endif %>

@@ -1,0 +1,70 @@
+\section{Experimente \& Sicherheitsfreigaben}
+Einige unserer Experimente können für Ihre Fachkraft für Arbeits- oder Brandsicherheit relevant sein. Wir klären diese Details gerne frühzeitig, um am Veranstaltungstag niemanden zu überraschen.
+<% if config.experimente.fluessigstickstoff.aktiv %>
+\subsection*{Flüssigstickstoff}
+
+Für die Veranstaltung benötigen wir insgesamt \textbf{<< config.experimente.fluessigstickstoff.anforderungen.liter_benoetigt >> Liter} Flüssigstickstoff. Dieser wird von geschultem Personal auf der Bühne gehandhabt.
+
+\begin{FrageBox}{Bereitstellung Flüssigstickstoff}
+    Können Sie den benötigten Stickstoff über Ihr Haus oder Ihre Partner bereitstellen?\\[0.2cm]
+
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=N2Ja, width=1em, height=1em, bordercolor=formborder]{} & \textbf{Ja}, die benötigte Menge wird von uns zur Verfügung gestellt.\\[0.2cm]
+        \CheckBox[name=N2Nein, width=1em, height=1em, bordercolor=formborder]{} & \textbf{Nein}, wir können leider keinen Stickstoff stellen.\\
+    \end{tabularx}
+    
+    \vspace{0.4cm}
+    \textbf{Falls Ja:}\\[0.2cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=DewarJa, width=1em, height=1em, bordercolor=formborder]{} & Werden auch passende Dewar-Gefäße zur Verfügung gestellt?
+    \end{tabularx}
+    
+    \vspace{0.4cm}
+    \textbf{Falls Nein:}\\
+    \vspace{0.2cm}
+    Können Sie uns einen lokalen Lieferanten empfehlen? (Name / Telefon / E-Mail):\\
+    \TextField[name=N2Lieferant, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+\end{FrageBox}
+<% endif %>
+<% if config.experimente.feuertornado.aktiv %>
+\subsection*{Feuertornado}
+
+Das Experiment besteht aus einer feuersicheren Schale mit Sicherheitsbrennpaste, die von einem drehbaren Metallkäfig umschlossen ist. Sobald die Paste entzündet und der Käfig in Rotation versetzt wird, zieht ein Luftstrom die Flamme zu einem kontrollierten, dünnen \enquote{Feuertornado} nach oben. 
+
+Wir verfügen über zwei Aufbauten und bevorzugen für Bühnenshows die \textbf{große Version}. Die genauen Maße sind:
+
+\begin{itemize}[itemsep=0.1cm]
+    \item \textbf{Große Version:} Höhe: 2,00\,m | Durchmesser Käfig: 65\,cm | Durchmesser Schale: 33\,cm
+    \item \textbf{Kleine Version:} Höhe: 0,35\,m | Durchmesser Käfig: 30\,cm | Durchmesser Schale: 10\,cm
+\end{itemize}
+
+Die Flammen bleiben stets innerhalb des Metallkäfigs. Dieser wird dadurch auch kaum erwärmt. Zur besseren Veranschaulichung für Ihre Gefährdungsbeurteilung haben wir Bilder des Aufbaus sowie das Sicherheitsdatenblatt der verwendeten Brennpaste in diesem Dokument als auch im Anhang beigefügt.
+
+\begin{FrageBox}{Brandschutz}
+    Bitte prüfen Sie inwieweit das Experiment durchgeführt werden kann und informieren Sie uns über mögliche Einschränkungen.\\[0.1cm]
+    \textbf{Falls Ja:}\\[0.2cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=FeuerBMAOK, width=1em, height=1em, bordercolor=formborder]{} & \textbf{Brandmeldeanlage:} Die Rauchmelder im Bühnenbereich können für den Zeitraum der Show deaktiviert oder auf Revision gesetzt werden.\\
+    \end{tabularx}
+
+    \vspace{0.2cm}
+    Diese Maßnahme dient als reine Vorsichtsmaßnahme. Da die verwendete Sicherheitsbrennpaste nahezu rückstands- und rauchfrei verbrennt, ist ein Auslösen der Rauchmelder äußerst unwahrscheinlich.
+    
+    \vspace{0.4cm}
+    Anmerkungen der Brandsicherheitswache / Technik (z.B. Auflagen):\\
+    \TextField[name=FeuerAuflagen, multiline=true, width=\linewidth, height=1.5cm, bordercolor=formborder]{}
+\end{FrageBox}
+
+<% if config.experimente.feuertornado.bilder and config.experimente.feuertornado.bilder | length > 0 %>
+\begin{figure}[htbp]
+    \centering
+    <% for bild in config.experimente.feuertornado.bilder %>
+        \includegraphics[width=0.3\textwidth]{<< bild >>}
+        \quad 
+    <% endfor %>
+    \caption{Ansichten des Aufbaus (Feuertornado)}
+    \label{fig:feuertornado}
+\end{figure}
+<% endif %>
+
+<% endif %>

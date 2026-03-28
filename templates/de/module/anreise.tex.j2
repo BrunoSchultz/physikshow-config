@@ -1,0 +1,49 @@
+\section{Anreise, Logistik \& Aufbau}
+
+<% if config.anreise is defined %>
+    <# Variablen setzen #>
+    <% set ankunft = config.anreise.ankunftszeit | default('nach Absprache') %>
+    <% set crew = config.anreise.crew_groesse | default('unserer') %>
+    <% set mat_vans = config.anreise.fahrzeuge.material_transporter | default(0) %>
+    <% set pers_vans = config.anreise.fahrzeuge.personen_transporter | default(0) %>
+    <% set total_vans = mat_vans + pers_vans %>
+    <% set sonstiges_text = config.anreise.sonstiges | default('') %>
+<% endif %>
+
+Unsere Crew (<< crew >> Personen) wird voraussichtlich am \textbf{<< config.anreise.anreisetag >>} gegen \textbf{<< ankunft >> Uhr} am Veranstaltungsort eintreffen, um mit dem Aufbau zu beginnen.
+
+\subsection*{Auspacken \& Parken}
+Da wir mit viel Equipment und schweren Transportkisten anreisen, benötigen wir möglichst kurze und barrierefreie Wege von unserem Fahrzeug direkt zur Bühne. 
+
+<% if total_vans > 0 %>
+Wir reisen mit insgesamt \textbf{<< total_vans >> Fahrzeugen} an 
+<% if config.anreise is defined and config.anreise.fahrzeuge is defined %>
+    <% if mat_vans > 0 %><< mat_vans >> Material-Transporter<% endif %><% if mat_vans > 0 and pers_vans > 0 %> und <% endif %><% if pers_vans > 0 %><< pers_vans >> Personen-Transporter/PKW<% endif %>
+<% endif %>).
+<% endif %>
+
+\begin{FrageBox}{Navigation \& Logistik}
+    \textbf{Zufahrt zur Ladezone:}\\
+    \textit{Da die Ladezone oft von der offiziellen Besucheradresse abweicht: Wohin genau sollen unsere Transporter für den Aufbau fahren?}\\[0.2cm]
+    \TextField[name=NaviAdresse, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+    
+    \vspace{0.4cm}
+    \textbf{Wegbeschaffenheit für den Auf- und Abbau:}\\[0.1cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        <% if total_vans > 0 %>
+        \CheckBox[name=ParkenFrei]{} & Parkplätze für unsere << total_vans >> Fahrzeuge werden direkt am Haus reserviert.\\
+        <% endif %>
+        \CheckBox[name=RampeFrei]{} & Der Weg von der Ladezone zur Bühne ist ebenerdig oder über Lastenaufzüge (ohne Treppen) mit Rollcases befahrbar.\\
+    \end{tabularx}
+
+    \vspace{0.4cm}
+    Falls keine oder nicht ausreichende viele Parkplätze reserviert werden, können Sie uns Parkplätze in der Nähe empfehlen?\\[0.2cm]
+    \TextField[name=Parken, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+\end{FrageBox}
+
+<% if sonstiges_text | length > 0 %>
+\vspace{0.3cm}
+\textbf{Zusätzliche Logistik-Hinweise von unserer Seite:}\\
+<< sonstiges_text >>
+\vspace{0.8cm}
+<% endif %>

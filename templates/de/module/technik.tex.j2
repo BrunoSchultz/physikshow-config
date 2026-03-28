@@ -1,0 +1,60 @@
+\section{Technik}
+
+Die technische Betreuung unserer Show erfolgt vor Ort durch:
+\begin{itemize}[noitemsep]
+    <% for person in config.technik.crew %>
+    \item << person >>
+    <% endfor %>
+\end{itemize}
+
+Wir benötigen für unser Technik-Team einen Arbeitsplatz (Front of House / FoH) im Zuschauerraum mit freier, unverbauter Sicht auf die Bühne.
+
+\subsection*{Eigene Ausstattung \& Schnittstellen}
+Wir bringen einen Großteil der benötigten Technik selbst mit.
+
+\begin{itemize}
+    <% if config.technik.ton.aktiv %>
+    \item \textbf{Audiotechnik:} Wir bringen <% if config.technik.ton.mischpult %>ein Mischpult und <% endif %> << config.technik.ton.anzahl_mikros >> Mikrofone selbst mit. Unsere Funkstrecken arbeiten im Frequenzbereich 626--698 MHz. Wir benötigen vor Ort lediglich einen \textbf{XLR- oder Klinken-Anschluss} an Ihr Beschallungssystem (PA).
+    <% endif %>
+    <% if config.technik.bild %>
+    \item \textbf{Bildübertragung:} Wir bringen eigene Kameras und einen Videomischer mit. Wir benötigen einen \textbf{HDMI-Anschluss} an Ihre Leinwand oder LED-Wand.
+    <% endif %>
+    
+    <% if config.technik.licht.aktiv %>
+    \item \textbf{Beleuchtung:} Wir bringen zusätzliche Lampen<% if config.technik.licht.spot %> und einen Verfolger-Spot<% endif %> mit.
+    <% endif %>
+\end{itemize}
+
+<% if config.technik.licht.aktiv %>
+\vspace{0.4cm}
+
+\begin{FrageBox}{Lichtsteuerung \& Setup}
+    Um unser Lichtsetup optimal zu planen, bitten wir um kurze Rückmeldung:
+    
+    \textbf{Platzierung eigenes Licht:} \\
+    Gibt es im Bühnen- oder Publikumsbereich geeignete Plätze (Stativplätze), um unsere Lampen aufzubauen (unter Berücksichtigung der Fluchtwege)?\\[0.2cm]
+    \TextField[name=LichtPlaetze, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+    
+    <% if config.technik.licht.lichtsteuerung_durch_crew or config.technik.verdunkelung_noetig %>
+    \vspace{0.4cm}
+    \textbf{Saalsteuerung:}\\[0.1cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        <% if config.technik.licht.lichtsteuerung_durch_crew %>
+        \CheckBox[name=LichtSteuerung]{} & Es ist möglich, dass unsere Crew die \textbf{Steuerung des Grundlichts / Saallichts} (AN/AUS/DIMMEN) übernimmt.\\
+        <% endif %>
+        <% if config.technik.licht.verdunkelung_noetig %>
+        \CheckBox[name=VerdunkelungOk]{} & Die Bühne und der Zuschauerraum können für Lichtexperimente \textbf{weitestgehend verdunkelt} werden.\\
+        <% endif %>
+    \end{tabularx}
+    <% endif %>
+\end{FrageBox}
+<% endif %>
+
+<% if config.technik.sonstiges | length > 0 %>
+        \textbf{Zusätzliche Anmerkungen:} \\
+        << config.technik.sonstiges >>
+        \vspace{0.8cm}
+<% endif %>
+
+
+\vspace{0.8cm}

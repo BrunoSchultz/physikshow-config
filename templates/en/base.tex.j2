@@ -1,0 +1,144 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} 
+\usepackage[margin=2.5cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Colors
+\definecolor{riderblue}{RGB}{0, 76, 153}
+\definecolor{formborder}{RGB}{150, 150, 150}
+
+% Environments
+\newtcolorbox{FrageBox}[1]{
+    colframe=riderblue,
+    colback=gray!5,
+    arc=3pt,
+    boxrule=1pt,
+    title=\textbf{#1}
+}
+
+% Setup
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=riderblue,
+    urlcolor=riderblue,
+    pdftitle={Event Information - << config.metadaten.show_name >>},
+    pdfauthor={Stage Manager Pipeline}
+}
+\graphicspath{{../medien/bilder/}}
+\def\DefaultOptionsofCheckBox{width=1em, height=1em, bordercolor=formborder}
+
+\begin{document}
+\Form % Activates interactive PDF form fields
+
+% HEADER
+\begin{center}
+    \includegraphics[width=4cm]{Physikshow-Uni-Bonn-Logo-Kreis}\\[0.5cm]
+    {\color{riderblue}\rule{\textwidth}{1.5pt}}\\[0.5cm]
+    {\Huge \textbf{\MakeUppercase{Technical Rider}}}\\[0.3cm]
+    {\LARGE \textcolor{riderblue}{\textbf{<< config.metadaten.show_name >>}}}\\[0.4cm]
+    {\color{riderblue}\rule{\textwidth}{1.5pt}}\\[0.8cm]
+    
+    \begin{tabularx}{0.7\textwidth}{>{\bfseries}l X}
+        Venue: & << config.metadaten.veranstaltungsort >> \\[0.2cm]
+        Date: & << config.metadaten.datum >> \\
+    \end{tabularx}
+\end{center}
+\vspace{1cm}
+To ensure a smooth production, please review the following document carefully.
+Please complete the digital checkboxes and text fields, save the document, and return it to us.
+
+<% if config.metadaten.kontakte | length > 0 %>
+For general questions regarding the production, please contact:
+\begin{center}
+    <% for person in config.metadaten.kontakte %>
+        \textbf{<< person.name >>}\\
+        <% if person.telefon %>
+            Phone: << person.telefon >>\\
+        <% endif %>
+        \href{mailto:<< person.mail >>}{<< person.mail >>}\\[0.4cm]
+    <% endfor %>
+\end{center}
+<% endif %>
+
+<% if config.experimente.kontakte | length > 0 %>
+For questions regarding special effects and experiments, please contact:
+\begin{center}
+    <% for person in config.experimente.kontakte %>
+        \textbf{<< person.name >>}\\
+        <% if person.telefon %>
+            Phone: << person.telefon >>\\
+        <% endif %>
+        \href{mailto:<< person.mail >>}{<< person.mail >>}\\[0.4cm]
+    <% endfor %>
+\end{center}
+<% endif %>
+
+<% if config.technik.kontakte | length > 0 %>
+For technical A/V and lighting inquiries, please contact:
+\begin{center}
+    <% for person in config.technik.kontakte %>
+        \textbf{<< person.name >>}\\
+        <% if person.telefon %>
+            Phone: << person.telefon >>\\
+        <% endif %>
+        \href{mailto:<< person.mail >>}{<< person.mail >>}\\[0.4cm]
+    <% endfor %>
+\end{center}
+<% endif %>
+
+\newpage
+
+% --- Include Templates ---
+<% if config.module.buehne %>
+    <% include 'module/buehne.tex.j2' %>
+    \newpage
+<% endif %>
+<% if config.module.anreise %>
+    <% include 'module/anreise.tex.j2' %>
+    \newpage
+<% endif %>
+<% if config.module.technik %>
+    <% include 'module/technik.tex.j2' %>
+    \newpage
+<% endif %>
+<% if config.module.experimente %>
+    <% include 'module/experimente.tex.j2' %>
+    \newpage
+<% endif %>
+
+\section{Contact Information and Notes}
+
+Please provide your primary contacts for the day of the event:
+
+\begin{FrageBox}{On-Site Contacts}
+    \textbf{Main On-Site Contact:}\\
+    \textit{For general and organizational matters on the day of the event.}\\[0.1cm]
+    Name: \TextField[name=KontaktOrtName, width=5cm, height=0.5cm, bordercolor=formborder]{} \quad
+    Phone: \TextField[name=KontaktOrtTel, width=4cm, height=0.5cm, bordercolor=formborder]{}\\[0.2cm]
+    Email: \TextField[name=KontaktOrtMail, width=9cm, height=0.5cm, bordercolor=formborder]{}\\[0.5cm]
+
+    \textbf{House Technician / Facility Manager:}\\
+    \textit{For technical matters such as power, lighting control, access, or fire alarm systems.}\\[0.1cm]
+    Name: \TextField[name=KontaktHausName, width=5cm, height=0.5cm, bordercolor=formborder]{} \quad
+    Phone: \TextField[name=KontaktHausTel, width=4cm, height=0.5cm, bordercolor=formborder]{}\\[0.2cm]
+    Email: \TextField[name=KontaktHausMail, width=9cm, height=0.5cm, bordercolor=formborder]{}
+\end{FrageBox}
+
+\begin{FrageBox}{Notes}
+Do you have any further notes, requests, or comments?\\
+\vspace{0.4cm}
+\TextField[name=FeuerAuflagen, multiline=true, width=\linewidth, height
+
+
+\end{document}

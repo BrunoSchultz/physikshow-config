@@ -1,0 +1,59 @@
+\section{A/V \& Lighting}
+
+Technical support for our production will be handled on-site by:
+\begin{itemize}[noitemsep]
+    <% for person in config.technik.crew %>
+    \item << person >>
+    <% endfor %>
+\end{itemize}
+
+Our technical crew requires a Front of House (FOH) position in the house with a clear, unobstructed view of the stage.
+
+\subsection*{Touring Equipment \& Tie-Ins}
+We tour with the majority of our required technical equipment.
+\begin{itemize}
+    <% if config.technik.ton.aktiv %>
+    \item \textbf{Audio:} We are carrying <% if config.technik.ton.mischpult %>our own FOH console and <% endif %> << config.technik.ton.anzahl_mikros >> wireless microphones. Our wireless systems operate in the 626--698 MHz RF band. We only require a \textbf{stereo line-level input (XLR or 1/4" TRS)} to tie into your House PA system.
+    <% endif %>
+    <% if config.technik.bild %>
+    \item \textbf{Video/Projection:} We carry our own cameras and video switcher. We require an \textbf{HDMI drop} tying into your projection system or LED wall.
+    <% endif %>
+    
+    <% if config.technik.licht.aktiv %>
+    \item \textbf{Lighting:} We carry supplemental lighting fixtures<% if config.technik.licht.spot %> and a followspot<% endif %>.
+    <% endif %>
+\end{itemize}
+
+<% if config.technik.licht.aktiv %>
+\vspace{0.4cm}
+
+\begin{FrageBox}{Lighting Control \& Setup}
+    To properly advance our lighting plot, please provide brief feedback:
+    
+    \textbf{Placement of Touring Fixtures:} \\
+    Are there suitable locations (e.g., boom positions or floor space) in the stage or house areas to deploy our fixtures safely, without obstructing egress paths?\\[0.2cm]
+    \TextField[name=LichtPlaetze, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+    
+    <% if config.technik.licht.lichtsteuerung_durch_crew or config.technik.verdunkelung_noetig %>
+    \vspace{0.4cm}
+    \textbf{House Lights Control:}\\[0.1cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        <% if config.technik.licht.lichtsteuerung_durch_crew %>
+        \CheckBox[name=LichtSteuerung]{} & Our touring crew can be granted \textbf{control over the house lights} (ON/OFF/DIM) from FOH.\\
+        <% endif %>
+        <% if config.technik.licht.verdunkelung_noetig %>
+        \CheckBox[name=VerdunkelungOk]{} & The stage and auditorium can achieve a \textbf{full blackout} for specific light-sensitive effects.\\
+        <% endif %>
+    \end{tabularx}
+    <% endif %>
+\end{FrageBox}
+<% endif %>
+
+<% if config.technik.sonstiges | length > 0 %>
+        \textbf{Additional Technical Notes:} \\
+        << config.technik.sonstiges >>
+        \vspace{0.8cm}
+<% endif %>
+
+
+\vspace{0.8cm}

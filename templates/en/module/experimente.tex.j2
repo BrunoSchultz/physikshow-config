@@ -1,0 +1,71 @@
+\section{Special Effects \& Safety Clearances}
+Several of our practical effects may require review by your venue's Fire Marshal or Safety Officer. We prefer to clear these details well in advance to ensure a smooth production day.
+
+<% if config.experimente.fluessigstickstoff.aktiv %>
+\subsection*{Liquid Nitrogen (LN2)}
+
+We require a total of \textbf{<< config.experimente.fluessigstickstoff.anforderungen.liter_benoetigt >> Liters} of liquid nitrogen for the event. This will be handled exclusively by trained personnel on stage.
+
+\begin{FrageBox}{Liquid Nitrogen Provision}
+    Are you or your partners able to supply the required nitrogen?\\
+
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=N2Ja, width=1em, height=1em, bordercolor=formborder]{} & \textbf{Yes}, the venue/promoter will provide the required amount.\\[0.2cm]
+        \CheckBox[name=N2Nein, width=1em, height=1em, bordercolor=formborder]{} & \textbf{No}, we are unable to supply the nitrogen.\\
+    \end{tabularx}
+    
+    \vspace{0.4cm}
+    \textbf{If Yes:}\\[0.2cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=DewarJa, width=1em, height=1em, bordercolor=formborder]{} & Will appropriate Dewar flasks be provided as well?
+    \end{tabularx}
+    
+    \vspace{0.4cm}
+    \textbf{If No:}\\
+    \vspace{0.2cm}
+    Can you recommend a local supplier? (Name / Phone / Email):\\
+    \TextField[name=N2Lieferant, width=\linewidth, height=0.6cm, bordercolor=formborder]{}
+\end{FrageBox}
+<% endif %>
+
+<% if config.experimente.feuertornado.aktiv %>
+\subsection*{Fire Tornado}
+
+This experiment consists of a fireproof pan holding burning gel, surrounded by a rotating metal cage. Once the gel is ignited and the cage spins, the draft creates a controlled, thin "fire tornado" pulling upward.
+
+We have two rigs and strongly prefer the \textbf{large version} for stage shows. The exact dimensions are:
+
+\begin{itemize}[itemsep=0.1cm]
+    \item \textbf{Large Rig:} Height: 2.00\,m (6.5\,ft) | Cage Diameter: 65\,cm (25.5\,in) | Pan Diameter: 33\,cm (13\,in)
+    \item \textbf{Small Rig:} Height: 0.35\,m (1.15\,ft) | Cage Diameter: 30\,cm (11.8\,in) | Pan Diameter: 10\,cm (4\,in)
+\end{itemize}
+
+The flames are completely contained within the metal cage at all times. The cage itself barely heats up during operation. For your risk assessment and Fire Marshal review, photos of the rig and the Safety Data Sheet (SDS) for the burning gel are included in this document and attached.
+
+\begin{FrageBox}{Fire Safety Clearances}
+    Please review the feasibility of this effect with your Fire Marshal and inform us of any restrictions.\\[0.1cm]
+    \textbf{If Approved:}\\[0.2cm]
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \CheckBox[name=FeuerBMAOK, width=1em, height=1em, bordercolor=formborder]{} & \textbf{Fire Alarm System:} The smoke detectors above the stage/deck can be bypassed, disabled, or set to test mode for the duration of the show.\\
+    \end{tabularx}
+
+    \vspace{0.2cm}
+    This is strictly a precautionary measure. Because the safety gel burns almost completely clean and smokeless, triggering a smoke detector is highly unlikely.\\
+    \vspace{0.4cm}
+    Notes from the Fire Marshal / Venue Techs (e.g., specific fire watch requirements or conditions):\\[0.2cm]
+    \TextField[name=FeuerAuflagen, multiline=true, width=\linewidth, height=1.5cm, bordercolor=formborder]{}
+\end{FrageBox}
+
+<% if config.experimente.feuertornado.bilder and config.experimente.feuertornado.bilder | length > 0 %>
+\begin{figure}[htbp]
+    \centering
+    <% for bild in config.experimente.feuertornado.bilder %>
+        \includegraphics[width=0.3\textwidth]{<< bild >>}
+        \quad 
+    <% endfor %>
+    \caption{Views of the Fire Tornado Rig}
+    \label{fig:feuertornado}
+\end{figure}
+<% endif %>
+
+<% endif %>
