@@ -18,7 +18,7 @@ Falls du keine lokale Latex-Installation hast, kannst du einen zip-Ordner für O
 
 1. **Repository klonen:**
    ```bash
-   git clone [https://github.com/BrunoSchultz/physikshow-config](https://github.com/BrunoSchultz/physikshow-config)
+   git clone https://github.com/BrunoSchultz/physikshow-config
    cd physikshow-config
    ```
 
