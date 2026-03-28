@@ -18,8 +18,8 @@ Falls du keine lokale Latex-Installation hast, kannst du einen zip-Ordner für O
 
 1. **Repository klonen:**
    ```bash
-   git clone [https://github.com/dein-username/buehnenmeister-pipeline.git](https://github.com/dein-username/buehnenmeister-pipeline.git)
-   cd buehnenmeister-pipeline
+   git clone [https://github.com/BrunoSchultz/physikshow-config](https://github.com/BrunoSchultz/physikshow-config)
+   cd physikshow-config
    ```
 
 2. **Python-Abhängigkeiten installieren:**
@@ -73,11 +73,11 @@ Hier definierst du die allgemeinen Eckdaten der Veranstaltung.
 
 2. **Module**
 
-Hier entscheidest du, welche Abschnitte im finalen Stage Rider auftauchen sollen. Setze den Wert auf true, wenn du das entsprechende Template benötigst (z. B. `technik: true`). Die folgenden Blöcke werden nur dann im Stage Rider verarbeitet, wenn das entsprechende Modul oben auf true gesetzt wurde.
+Hier entscheidest du, welche Abschnitte im finalen Stage Rider auftauchen sollen. Setze den Wert auf true, wenn du das entsprechende Template benötigst (z. B. `technik: true`). Die folgenden Blöcke werden nur dann im Stage Rider verarbeitet, wenn das entsprechende Modul oben auf `true` gesetzt wurde.
 
 3. **Bühne (buehne)**
 
-Definiert die Ausstattung, die direkt auf der Bühne benötigt wird. Gib die genaue Anzahl an Tischen (tische) und Stühlen (stuehle) an. Unter sonstiges kannst du zusätzlichen Text eintragen (z. B. "Ein Wasseranschluss wird benötigt"). Bleibt das Feld leer (""), wird kein Text generiert.
+Definiert die Ausstattung, die direkt auf der Bühne benötigt wird. Gib die genaue Anzahl an Tischen (tische) und Stühlen (stuehle) an. Unter `sonstiges` kannst du zusätzlichen Text eintragen (z. B. "Ein Wasseranschluss wird benötigt"). Bleibt das Feld leer (""), wird kein Text generiert.
 
 4. **Anreise und Logistik (anreise)**
 
