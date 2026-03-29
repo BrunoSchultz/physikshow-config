@@ -1,18 +1,26 @@
 # Physikshow made easy
 
-Dieses Projekt ist eine automatisierte Pipeline zur Erstellung von Stage-Ridern / Bühnenanweisungen für die Physikshow. Es nutzt Python und Jinja2, um Konfigurationsdaten (YAML) in LaTeX-Templates einzufügen, und kompiliert diese anschließend zu einem fertigen PDF-Dokument.
+Dieses Projekt ist eine Pipeline zur Erstellung von Stage-Ridern / Bühnenanweisungen für die Physikshow. Es nutzt Python und Jinja2, um Konfigurationsdaten (YAML) in LaTeX-Templates einzufügen, und kompiliert diese anschließend zu einem fertigen PDF-Dokument.
 
 Die Vorlagen sind modular aufgebaut und unterstützen sowohl Deutsch (`de`) und Englisch (`en`).
 
 ## Voraussetzungen
 
-Um dieses Projekt lokal auszuführen, benötigst du Folgendes:
+Um dieses Projekt lokal auszuführen, brauchst du:
 
 * **Python 3.x:** Für das Ausführen des Generierungs-Skripts (`generiere_rider.py`).
 * **LaTeX-Distribution:** (z. B. TeX Live, MiKTeX oder MacTeX), falls du die PDF-Dokumente lokal generieren möchtest.
-* **Make:** Zum Ausführen der vordefinierten Build-Befehle (auf den meisten Linux/macOS-Systemen vorinstalliert).
+* **Make** (Optional): Auf den meisten Linux/macOS-Systemen vorinstalliert, um die vordefinierten Build-Befehle auszuführen. Windows-Nutzer können alternativ das Python-Skript nutzen.
 
-Falls du keine lokale Latex-Installation hast, kannst du einen zip-Ordner für Overleaf erstellen (siehe Anwendung).
+## Git Installation
+
+Falls du Git noch nicht installiert hast, wähle dein Betriebssystem:
+
+- Windows: Lade Git von git-scm.com/download/win herunter und folge dem Installer. Alternativ über das Terminal: `winget install --id Git.Git -e --source winget`.
+
+- macOS: Öffne das Terminal und gib `git --version` ein. Falls Git fehlt, bietet macOS automatisch die Installation der Command Line Tools an. Alternativ via Homebrew: `brew install git`.
+
+- Linux (Ubuntu/Debian): Öffne das Terminal und führe `sudo apt update && sudo apt install git` aus.
 
 ## Installation
 
@@ -35,10 +43,16 @@ Die Inhalte werden über eine YAML-Konfigurationsdatei in `config/show_config.ya
 
 #### Lokale PDF-Generierung
 
-Wenn du LaTeX lokal installiert hast, kannst du den gesamten Prozess (Generierung der .tex-Datei und Kompilierung zur .pdf ) mit einem einzigen Befehl starten:
+Wenn du LaTeX lokal installiert hast, kannst du den gesamten Prozess (Generierung der .tex-Datei und Kompilierung zur .pdf) mit einem `make`-Befehl durchführen. Da Windows make standardmäßig nicht unterstützt, liegt ein äquivalentes Python-Skript bei.:
 
+- Für Mac / Linux
 ```bash
 make
+```
+
+- Für Windows
+```bash
+python build.py
 ```
 
 Die fertige PDF-Datei sowie die LaTeX-Quelldatei findest du anschließend im Verzeichnis `build/`.
@@ -47,8 +61,14 @@ Die fertige PDF-Datei sowie die LaTeX-Quelldatei findest du anschließend im Ver
 
 Falls du keine lokale LaTeX-Installation hast oder das Projekt auf Overleaf bearbeiten möchtest, kannst du die .tex-Dateien generieren und direkt verpacken lassen:
 
+- Für Mac / Linux
 ```bash
 make overleaf
+```
+
+- Für Windows
+```
+python build.py overleaf
 ```
 
 Dieser Befehl generiert den LaTeX-Code und erstellt automatisch die Datei `overleaf_upload.zip`. Diese ZIP-Datei enthält alles (inklusive des Ordners medien/bilder/) und kann direkt in ein neues Overleaf-Projekt hochgeladen werden ("New Project" -> "Upload Project").
@@ -57,8 +77,15 @@ Dieser Befehl generiert den LaTeX-Code und erstellt automatisch die Datei `overl
 
 Um alle generierten Dateien, temporären LaTeX-Dateien und den build/-Ordner zu entfernen, nutze
 
+
+- Für Mac / Linux
 ```bash
 make clean
+```
+
+- Für Windows
+```
+python build.py clean
 ```
 
 Oft können kompiliere Probleme entstehen, die dadurch behoben werden, indem man davor `make clean` ausführt.
