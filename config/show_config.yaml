@@ -1,88 +1,65 @@
-# config/show_config.yaml
-# Config Datei
-
 metadaten:
-  show_name: "Titel der Physikshow"
-  veranstaltungsort: "Krissis Wohnung"
-  datum: "28.03.26"
-  sprache: "de" # de oder en
-  kontakte: # Kontakt Informationen zur allgemeinen Rückfagen
-    - name: "Vita"
-      mail: "vita@physikshow.uni-bonn.de"
-      telefon: "+49 420 696969"
-    - name: "Mortis"
-      mail: "mortis@physikshow.uni-bonn.de"
-      # Telefon kann weggelassen, wird dann im PDF auch nicht angezeigt
-
-# Welche Templates sollen verwendet werden?
+  show_name: Physikshow Gone Wild
+  veranstaltungsort: Krissis Wohnung
+  datum: 28.03.26
+  sprache: de
+  kontakte:
+  - name: Vita
+    mail: vita@physikshow.uni-bonn.de
+    telefon: ''
+  - name: Mortis
+    mail: mortis@physikshow.uni-bonn.de
+    telefon: ''
 module:
   experimente: true
   technik: true
-  unterkunft: false # Mach ich später irgendwann
+  unterkunft: false
   buehne: true
-  anreise: true 
-
-# Ausstattung für die Bühne, falls etwas nicht benötigt wird, wird auch keinen Text generiert.
+  anreise: true
 buehne:
-  aktiv: true # Falls Tische, Stühle etc... benötigt werden
-  tische: 4    
-  stuehle: 2    
-  sonstiges: "" # Falls sonstige Sachen benötigt werden, kann einen Text ergänzt werden.
-
-
-# Anreise und Logistik
+  tische: 4
+  stuehle: 0.0
+  sonstiges: ''
 anreise:
-  anreisetag: "31.03." # Oder "Showtag", "2. Januar" etc...
-  ankunftszeit: "14:00"
+  anreisetag: 31.03.
+  ankunftszeit: '14:00'
   crew_groesse: 20
   fahrzeuge:
     material_transporter: 2
     personen_transporter: 2
-  sonstiges: ""
-
-# Technik
+  sonstiges: ''
 technik:
   crew:
-    - "Timo Poller"
-    - "Paula Weber"
-    - "Kristoffer Kerkhof"
+  - Timo Poller
+  - Paula Weber
+  - Kristoffer Kerkhof
   kontakte:
-    - name: "Luna Callisto"
-      mail: "luna@physikshow.uni-bonn.de"
-      
-      # Kontaktinformation für Rückfragen zur Technik (kann weglassen werden)
-  
-  bild: true # Falls wir Bilder / Videos zeigen
-
+  - name: Luna Callisto
+    mail: luna@physikshow.uni-bonn.de
+    telefon: ''
+  bild: true
   licht:
-    aktiv: true # Falls wir eigene Lampen / Licht mitbrigen
-    lichtsteuerung_durch_crew: true # Müssen wir das Hörsaal licht selbst steuern können?
-    verdunkelung_noetig: true # Müssen den Hörsaal komplett abdunkeln können? # Falls wir Spot mitbringen
+    aktiv: true
+    lichtsteuerung_durch_crew: true
+    verdunkelung_noetig: true
     spot: true
-
-  ton: 
-    aktiv: true # Falls wir Mikros / Mischpult mitbringen
-    anzahl_mikros: 4
-    mischpult: true # Falls wir Mischpult mitbringen
-  sonstiges: ""
-
-# Spezifische Anforderungen für die Experimente
+  ton:
+    aktiv: true
+    anzahl_mikros: 6
+    mischpult: true
+  sonstiges: ''
 experimente:
   kontakte:
-    - name: "Jupi Mercury"
-      mail: "jupi@physikshow.uni-bonn.de"
-      telefon: "+49 420 676767"
-  # Kontaktinformation für Rückfragen zu den Experimenten (kann weglassen werden)
+  - name: Jupi Mercury
+    mail: jupi@physikshow.uni-bonn.de
+    telefon: ''
   fluessigstickstoff:
     aktiv: true
     anforderungen:
       liter_benoetigt: 15
-  
   feuertornado:
     aktiv: true
     bilder:
-    - "Feuertornado_gross.jpeg"
-    - "Feuertornado_gross1.jpeg"
-    - "Feuertornado_klein.jpeg"
-
-  # Mehr Experimente könnten hier stehen...
+    - Feuertornado_gross.jpeg
+    - Feuertornado_gross1.jpeg
+    - Feuertornado_klein.jpeg
