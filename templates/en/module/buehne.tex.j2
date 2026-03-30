@@ -29,8 +29,6 @@ Our production requires a Green Room or prep area that is off-limits to the publ
 \end{FrageBox}
 
 
-<# --- Backline (Tables, Chairs, etc.) (Only visible if defined in YAML) --- #>
-<% if config.buehne.aktiv %>
 \subsection*{Backline \& Props}
     For the performance, we require the following backline/furniture from the venue:
     <% set anzahl_tische = config.buehne.tische | default(0) %>
@@ -59,4 +57,3 @@ Our production requires a Green Room or prep area that is off-limits to the publ
         << sonstiges_text >>
         \vspace{0.8cm}
     <% endif %>
-<% endif %>

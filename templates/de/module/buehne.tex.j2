@@ -28,9 +28,6 @@ Für die Show benötigen wir einen Backstage-Bereich, der idealerweise für das 
     \TextField[name=BackstageNotizen, multiline=true, width=\linewidth, height=1.2cm, bordercolor=formborder]{}
 \end{FrageBox}
 
-
-<# --- Zusätzliches (Tische, Stühle, etc.) (Nur sichtbar, wenn in YAML definiert) --- #>
-<% if config.buehne.aktiv %>
 \subsection*{Sonstiges}
     Für die Show benötigen wir auch folgende Requisiten oder Mobiliar
     <% set anzahl_tische = config.buehne.tische | default(0) %>
@@ -59,4 +56,3 @@ Für die Show benötigen wir einen Backstage-Bereich, der idealerweise für das 
         << sonstiges_text >>
         \vspace{0.8cm}
     <% endif %>
-<% endif %>
