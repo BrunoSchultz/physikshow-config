@@ -41,7 +41,7 @@ def build():
                 stderr=subprocess.DEVNULL,
                 check=True
             )
-        print(f"✅ ERFOLG! Datei in: {BUILD_DIR}/{PDF_FILE}")
+        print(f"ERFOLG! Datei in: {BUILD_DIR}/{PDF_FILE}")
     except FileNotFoundError:
         print("Fehler: 'pdflatex' wurde nicht gefunden. Ist LaTeX installiert und in den System-Umgebungsvariablen (PATH)?")
     except subprocess.CalledProcessError:
@@ -69,7 +69,7 @@ def overleaf():
         else:
             print(f"Warnung: Ordner {medien_dir} nicht gefunden.")
             
-    print(f"✅ ERFOLG! Overleaf-ZIP erstellt: {ZIP_FILE}")
+    print(f"ERFOLG! Overleaf-ZIP erstellt: {ZIP_FILE}")
     print("Lade 'overleaf_upload.zip' bei Overleaf hoch (New Project -> Upload Project).")
 
 def clean():
