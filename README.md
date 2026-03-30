@@ -21,7 +21,7 @@ Falls du Git noch nicht installiert hast, wähle dein Betriebssystem:
 
 1. **Repository klonen:**
    ```bash
-   git clone [https://github.com/BrunoSchultz/physikshow-config](https://github.com/BrunoSchultz/physikshow-config)
+   git clone https://github.com/BrunoSchultz/physikshow-config
    cd physikshow-config
    ```
 
