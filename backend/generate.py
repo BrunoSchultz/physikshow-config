@@ -30,7 +30,7 @@ def generiere_rider(config: ShowConfig) -> str:
     gerendertes_latex = template.render(config=data)
 
     os.makedirs("build", exist_ok=True)
-    ausgabe_pfad = "build_test/main.tex"
+    ausgabe_pfad = "build/main.tex"
 
     with open(ausgabe_pfad, 'w', encoding='utf-8') as f:
         f.write(gerendertes_latex)
