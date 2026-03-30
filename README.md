@@ -1,123 +1,83 @@
-# Physikshow made easy
+# Physikshow Stage Rider Generator
 
-Dieses Projekt ist eine Pipeline zur Erstellung von Stage-Ridern / Bühnenanweisungen für die Physikshow. Es nutzt Python und Jinja2, um Konfigurationsdaten (YAML) in LaTeX-Templates einzufügen, und kompiliert diese anschließend zu einem fertigen PDF-Dokument.
-
-Die Vorlagen sind modular aufgebaut und unterstützen sowohl Deutsch (`de`) und Englisch (`en`).
+Dieses Projekt bietet eine webbasierte Benutzeroberfläche zur einfachen Erstellung von Stage-Ridern / Bühnenanweisungen für die Physikshow.
 
 ## Voraussetzungen
 
 Um dieses Projekt lokal auszuführen, brauchst du:
 
-* **Python 3.x:** Für das Ausführen des Generierungs-Skripts (`generiere_rider.py`).
-* **LaTeX-Distribution:** (z. B. TeX Live, MiKTeX oder MacTeX), falls du die PDF-Dokumente lokal generieren möchtest.
-* **Make** (Optional): Auf den meisten Linux/macOS-Systemen vorinstalliert, um die vordefinierten Build-Befehle auszuführen. Windows-Nutzer können alternativ das Python-Skript nutzen.
+* **Python 3.x:** Für das Ausführen der Web-App.
+* **LaTeX-Distribution** (z. B. TeX Live, MiKTeX oder MacTeX): *Nur erforderlich*, wenn du die fertigen PDF-Dokumente direkt lokal über die App generieren möchtest. Für den Overleaf-Export wird lokal kein LaTeX benötigt.
 
 ## Git Installation
 
 Falls du Git noch nicht installiert hast, wähle dein Betriebssystem:
 
-- Windows: Lade Git von git-scm.com/download/win herunter und folge dem Installer. Alternativ über das Terminal: `winget install --id Git.Git -e --source winget`.
-
-- macOS: Öffne das Terminal und gib `git --version` ein. Falls Git fehlt, bietet macOS automatisch die Installation der Command Line Tools an. Alternativ via Homebrew: `brew install git`.
-
-- Linux (Ubuntu/Debian): Öffne das Terminal und führe `sudo apt update && sudo apt install git` aus.
+- **Windows:** Lade Git von git-scm.com/download/win herunter und folge dem Installer. Alternativ über das Terminal: `winget install --id Git.Git -e --source winget`.
+- **macOS:** Öffne das Terminal und gib `git --version` ein. Falls Git fehlt, bietet macOS automatisch die Installation an. Alternativ via Homebrew: `brew install git`.
+- **Linux (Ubuntu/Debian):** Öffne das Terminal und führe `sudo apt update && sudo apt install git` aus.
 
 ## Installation
 
 1. **Repository klonen:**
    ```bash
-   git clone https://github.com/BrunoSchultz/physikshow-config
+   git clone [https://github.com/BrunoSchultz/physikshow-config](https://github.com/BrunoSchultz/physikshow-config)
    cd physikshow-config
    ```
 
-2. **Python-Abhängigkeiten installieren:**
-    ```bash
+2. **Python-Packete installieren**
+```bash
     pip install -r requirements.txt
-    ```
+```
+## Seite starten 
 
-## Anwendung
-
-#### Konfiguration 
-
-Die Inhalte werden über eine YAML-Konfigurationsdatei in `config/show_config.yaml` gesteuert. Hier definierst du alle Parameter (Metadaten, benötigte Technik, Logistik und Experimente), ohne den zugrunde liegenden LaTeX-Code manuell bearbeiten zu müssen.
-
-#### Lokale PDF-Generierung
-
-Wenn du LaTeX lokal installiert hast, kannst du den gesamten Prozess (Generierung der .tex-Datei und Kompilierung zur .pdf) mit einem `make`-Befehl durchführen. Da Windows make standardmäßig nicht unterstützt, liegt ein äquivalentes Python-Skript bei.:
-
-- Für Mac / Linux
+Die gesamte Steuerung erfolgt über die grafische Oberfläche. Starte die Seite einfach über den Terminal von dem `physikshow-config`-Ordner
 ```bash
-make
+python main.py
 ```
+Das Skript startet einen lokalen Webserver und öffnet die Anwendung automatisch in deinem Standard-Webbrowser.
 
-- Für Windows
-```bash
-python build.py
-```
+## Bedienung
 
-Die fertige PDF-Datei sowie die LaTeX-Quelldatei findest du anschließend im Verzeichnis `build/`.
+Die Seite ist in verschiedene Tabsterteilt, in denen du die Anforderungen deiner Show zusammenklicken kannst.
 
-#### Nutzung mit Overleaf
+## 1. Aktive Module (Modul-Steuerung)
 
-Falls du keine lokale LaTeX-Installation hast oder das Projekt auf Overleaf bearbeiten möchtest, kannst du die .tex-Dateien generieren und direkt verpacken lassen:
+Ganz oben auf der Seite kannst du per Checkbox auswählen, welche Abschnitte (Bühne, Anreise, Technik, Experimente) im finalen Stage Rider auftauchen sollen.  
+Deaktivierte Module werden im finalen Dokument ausgeblendet, und die entsprechenden Tabs in der Benutzeroberfläche verschwinden.
 
-- Für Mac / Linux
-```bash
-make overleaf
-```
+## 2. Dateneingabe über Tabs
 
-- Für Windows
-```
-python build.py overleaf
-```
+### Allgemein
+Hier definierst du die Eckdaten der Veranstaltung (Name, Ort, Datum, Sprache).  
+Zudem kannst du hier Kontakte und Ansprechpartner für allgemeine Fragen, Technik und Experimente hinzufügen oder löschen.
 
-Dieser Befehl generiert den LaTeX-Code und erstellt automatisch die Datei `overleaf_upload.zip`. Diese ZIP-Datei enthält alles (inklusive des Ordners medien/bilder/) und kann direkt in ein neues Overleaf-Projekt hochgeladen werden ("New Project" -> "Upload Project").
+### Bühne
+Definiert die Ausstattung, die direkt auf der Bühne benötigt wird (Anzahl der Tische und Stühle).  
+Unter **"Sonstiges"** kannst du freien Text eintragen (z. B. *"Ein Wasseranschluss wird benötigt"*).
 
-#### Aufräumen 
+### Anreise
+Informationen für die Logistik vor Ort.  
+Trage Anreisetag, Ankunftszeit und die Größe der Crew ein. Zudem spezifizierst du, wie viele Parkplätze für Material- und Personentransporter freigehalten werden müssen.
 
-Um alle generierten Dateien, temporären LaTeX-Dateien und den build/-Ordner zu entfernen, nutze
+### Technik
+Detaillierte Steuerung für Bild, Licht und Ton.  
+Lege per Checkbox fest, ob ihr eigenes Equipment mitbringt oder die Location Technik (z. B. Mischpult, Mikrofone, Verdunkelung, Beamer) stellen muss.
 
+### Experimente
+Besondere Anforderungen und Gefahrenhinweise für spezifische Versuche (aktuell für Flüssigstickstoff und Feuertornado).
 
-- Für Mac / Linux
-```bash
-make clean
-```
+## 3. Aktionen & Export
 
-- Für Windows
-```
-python build.py clean
-```
+Am unteren Bildschirmrand findest du die Buttons zur Verarbeitung deiner Eingaben:
 
-Oft können kompiliere Probleme entstehen, die dadurch behoben werden, indem man davor `make clean` ausführt.
+- **Speichern (YAML)**  
+  Speichert deine aktuellen Eingaben im Hintergrund ab. Wenn du die App das nächste Mal öffnest, wird genau dieser Stand wieder geladen.
 
-### Config Datei
-Die Datei ist im YAML-Format geschrieben. Achte beim Bearbeiten darauf, die Einrückungen (Leerzeichen, keine Tabs) beizubehalten. Werte können als Text (in Anführungszeichen "..."), als Zahlen oder als Wahrheitswerte (true / false) angegeben werden.
+- **Overleaf ZIP**  
+  Generiert den LaTeX-Code und verpackt ihn zusammen mit allen benötigten Medien in eine ZIP-Datei (`overleaf_upload.zip`).  
+  Diese wird dir direkt zum Download angeboten und kann in ein neues Overleaf-Projekt hochgeladen werden (*"New Project" → "Upload Project"*).
 
-1. **Metadaten**
-
-Hier definierst du die allgemeinen Eckdaten der Veranstaltung.
-
-
-2. **Module**
-
-Hier entscheidest du, welche Abschnitte im finalen Stage Rider auftauchen sollen. Setze den Wert auf true, wenn du das entsprechende Template benötigst (z. B. `technik: true`). Die folgenden Blöcke werden nur dann im Stage Rider verarbeitet, wenn das entsprechende Modul oben auf `true` gesetzt wurde.
-
-3. **Bühne (buehne)**
-
-Definiert die Ausstattung, die direkt auf der Bühne benötigt wird. Gib die genaue Anzahl an Tischen (tische) und Stühlen (stuehle) an. Unter `sonstiges` kannst du zusätzlichen Text eintragen (z. B. "Ein Wasseranschluss wird benötigt"). Bleibt das Feld leer (""), wird kein Text generiert.
-
-4. **Anreise und Logistik (anreise)**
-
-Informationen für die Planung vor Ort. Trage den Anreisetag (z. B. "31.03." oder "Showtag"), die genaue Uhrzeit und die Größe der Crew ein. Unter fahrzeuge spezifizierst du, wie viele Parkplätze für Material- und Personentransporter freigehalten werden müssen.
-
-5. **Technik (technik)**
-
-Alles rund um Licht, Ton und Medien. Crew & Kontakte: Du kannst spezifische Ansprechpartner nur für die Technik benennen.
-
-- Bild: Auf true setzen, falls Beamer/Leinwände für Bilder oder Videos gebraucht werden.
-
-- Licht & Ton: Hier kannst du sehr granular einstellen, was ihr selbst mitbringt (aktiv: true) und was die Location leisten muss.
-
-6. **Experimente (experimente)**
-
-Besondere Anforderungen und Gefahrenhinweise für die üblichen, "gefährlichen" Versuche. Zurzeit nur für flüssigen Stickstoff und Feuertornado, kann aber leicht ergänzt werden.
+- **PDF Generieren & Downloaden**  
+  Kompiliert den Stage Rider im Hintergrund zu einer fertigen PDF und lädt diese direkt in deinem Browser herunter.  
+  *(Achtung: Erfordert eine lokale LaTeX-Installation).*
