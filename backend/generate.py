@@ -4,8 +4,8 @@
 import os 
 import sys
 from jinja2 import Environment, FileSystemLoader
-import utils
-from models import ShowConfig
+from backend import utils
+from backend.models import ShowConfig
 
 def konfiguriere_jinja_umgebung(template_ordner):
     return Environment(

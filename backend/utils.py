@@ -1,6 +1,6 @@
 import os
 import yaml
-from models import ShowConfig
+from backend.models import ShowConfig
 
 def load_config(filepath: str = "config/show_config.yaml") -> ShowConfig:
     """

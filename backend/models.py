@@ -23,7 +23,6 @@ class Module(BaseModel):
 
 # --- Buehne ---
 class Buehne(BaseModel):
-    aktiv: bool 
     tische: int
     stuehle: int 
     sonstiges: str = ""
