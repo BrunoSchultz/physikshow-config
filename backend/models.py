@@ -80,9 +80,9 @@ class Experimente(BaseModel):
 # --- Config ---
 
 class ShowConfig(BaseModel):
-    metadaten: Metadaten
-    module: Module 
-    buehne: Buehne
-    anreise: Anreise
-    technik: Technik 
-    experimente: Experimente
+    metadaten: Metadaten = Field(default_factory=Metadaten)
+    module: Module = Field(default_factory=Module)
+    buehne: Buehne = Field(default_factory=Buehne)
+    anreise: Anreise = Field(default_factory=Anreise)
+    technik: Technik = Field(default_factory=Technik)
+    experimente: Experimente = Field(default_factory=Experimente)
